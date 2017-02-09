@@ -15,7 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.backgroundColor = UIColor.white
+        let rootVC = ViewController()
+        rootVC.configure()
+        self.window?.rootViewController = rootVC
+        
+        let config: RollbarConfiguration = RollbarConfiguration()
+        config.environment = "production"
+        Rollbar.initWithAccessToken("95b9c3b8e45f46fdaf7c7b12a6bab655", configuration: config)
+        
+        self.window?.makeKeyAndVisible()
         return true
     }
 

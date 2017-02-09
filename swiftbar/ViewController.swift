@@ -8,7 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+enum Tabs: Int {
+    case Favorites
+    case TopRated
+}
+
+class ViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +23,20 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func configure() {
+        let vc1 = FavoritesViewController()
+        vc1.title = "Errors"
+        let nav1 = UINavigationController(rootViewController: vc1)
+        nav1.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.favorites, tag: Tabs.Favorites.rawValue)
+        
+        let vc2 = TopRatedViewController()
+        vc2.title = "Network"
+        let nav2 = UINavigationController(rootViewController: vc2)
+        nav2.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.topRated, tag: Tabs.TopRated.rawValue)
+        
+        self.viewControllers = [nav1, nav2]
     }
 
 
