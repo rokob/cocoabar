@@ -38,7 +38,8 @@ class FavoritesDataSource: NSObject, UITableViewDelegate, UITableViewDataSource 
         ("Null Pointer", nullpointer),
         ("Thrown Error", thrown),
         ("Out of Bounds", outofbounds),
-        ("Async", async)
+        ("Async", async),
+        ("Log a message", logmsg)
     ]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,6 +84,10 @@ class FavoritesDataSource: NSObject, UITableViewDelegate, UITableViewDataSource 
             var x: String? = nil
             x!.append("Hello")
         }
+    }
+
+    func logmsg() {
+        Rollbar.log(withLevel: "warning", message: "Hello friend")
     }
 }
 
